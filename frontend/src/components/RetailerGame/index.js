@@ -1,21 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styled from 'styled-components';
-import { Button, Table, Text } from 'gestalt';
+import React, { useState, useEffect, useRef } from 'react';
 import PriceButton from './PriceButton';
 import TableView from './TableView';
-import { possibleDemands, TOTAL_WEEKS } from '../../const/demand';
+import { TOTAL_WEEKS } from '../../const/demand';
 import {
-  N_POSSIBILITY,
-  M_POSSIBILITY,
-  PRICE_1,
-  PRICE_2,
-  PRICE_3,
   PRICE_4,
   PRICE_SALVAGE,
-  INIT_STOCK,
-  POSSIBLE_PRICES,
 } from '../../const/variables';
-import { getRemainStock, getWeekDemand } from '../../utils/fn';
+import { demandPicker, getRemainStock, getWeekDemand } from '../../utils/fn';
 import { showConfirmDialog } from '../../utils/showConfirmDialog';
 
 /**
@@ -34,15 +25,6 @@ import { showConfirmDialog } from '../../utils/showConfirmDialog';
  * 3. performance -> total / max
  * 4. line chart
  */
-
-const demandPicker = () => {
-  const n = Math.floor(Math.random() * N_POSSIBILITY) + 1;
-  const m = Math.floor(Math.random() * M_POSSIBILITY) + 0;
-  const p = POSSIBLE_PRICES.length;
-  const index = n * m * p;
-  if (!possibleDemands[index]) return possibleDemands.slice(0, p);
-  return possibleDemands.slice(index, index + p);
-};
 
 const RetailerGame = (props) => {
   const ref = useRef(demandPicker());
@@ -88,8 +70,6 @@ const RetailerGame = (props) => {
   };
 
   useEffect(() => {
-    console.log('prices: ', prices.length);
-    console.log('demands: ', demands.length);
     if (getRemainStock(demands) === 0) {
       // no stock, end game
       console.log('stock goes to 0', demands.join());
