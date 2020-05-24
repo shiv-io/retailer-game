@@ -17,6 +17,12 @@ export const getRemainStock = (demands) => {
   return INIT_STOCK - sold;
 };
 
+export const getTotalRevenue = (prices, demands) => {
+  return prices.reduce((acc, cur, i) => {
+    return acc + cur * demands[i];
+  }, 0);
+}
+
 export const getWeekDemand = (demandsArr, price, week) => {
   return demandsArr[POSSIBLE_PRICES.indexOf(price)][week];
 };

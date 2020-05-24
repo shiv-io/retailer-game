@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import RetailerGame from './components/RetailerGame';
 
 import 'gestalt/dist/gestalt.css';

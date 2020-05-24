@@ -1,8 +1,36 @@
 import React from 'react';
 import { Table, Text } from 'gestalt';
-import { getRemainStock } from '../../utils/fn';
+import { getRemainStock, getTotalRevenue } from '../../utils/fn';
+import { PRICE_SALVAGE } from '../../const/variables';
 
-const TableView = ({ prices, demands }) => {
+const SummaryRow = ({ prices, demands, maxRevenue }) => {
+  const remainingStock = getRemainStock(demands);
+  const salvageRevenue = remainingStock * PRICE_SALVAGE;
+  const totalRevenue = getTotalRevenue(prices, demands) + salvageRevenue;
+
+  return (
+    <Table.Row>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell></Table.Cell>
+      <Table.Cell>
+        <Text>Salvage Revenu:</Text>
+        <Text>{`$${salvageRevenue}`}</Text>
+      </Table.Cell>
+      <Table.Cell>
+        <Text>總營收:</Text>
+        <Text>{`$${totalRevenue}`}</Text>
+      </Table.Cell>
+      <Table.Cell>
+        <Text>最大營收:</Text>
+        <Text>{maxRevenue}</Text>
+      </Table.Cell>
+    </Table.Row>
+  );
+};
+
+const TableView = ({ prices, demands, showSummary = false }) => {
   let cumulatedRevenue = 0;
   return (
     <Table>
@@ -63,6 +91,7 @@ const TableView = ({ prices, demands }) => {
             </Table.Row>
           );
         })}
+        {showSummary && <SummaryRow prices={prices} demands={demands} />}
       </Table.Body>
     </Table>
   );

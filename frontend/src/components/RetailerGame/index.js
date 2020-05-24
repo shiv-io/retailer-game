@@ -2,10 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PriceButton from './PriceButton';
 import TableView from './TableView';
 import { TOTAL_WEEKS } from '../../const/demand';
-import {
-  PRICE_4,
-  PRICE_SALVAGE,
-} from '../../const/variables';
+import { PRICE_4 } from '../../const/variables';
 import { demandPicker, getRemainStock, getWeekDemand } from '../../utils/fn';
 import { showConfirmDialog } from '../../utils/showConfirmDialog';
 
@@ -120,7 +117,13 @@ const RetailerGame = (props) => {
           lastPrice={prices[prices.length - 1]}
         />
       )}
-      {prices.length > 0 && <TableView prices={prices} demands={demands} />}
+      {prices.length > 0 && (
+        <TableView
+          prices={prices}
+          demands={demands}
+          showSummary={isGameEnded}
+        />
+      )}
     </div>
   );
 };
