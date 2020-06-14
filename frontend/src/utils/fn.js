@@ -1,4 +1,9 @@
-import { N_POSSIBILITY, M_POSSIBILITY, INIT_STOCK, POSSIBLE_PRICES } from '../const/variables';
+import {
+  N_POSSIBILITY,
+  M_POSSIBILITY,
+  INIT_STOCK,
+  POSSIBLE_PRICES,
+} from '../const/variables';
 import { possibleDemands } from '../const/demand';
 
 export const demandPicker = () => {
@@ -21,8 +26,16 @@ export const getTotalRevenue = (prices, demands) => {
   return prices.reduce((acc, cur, i) => {
     return acc + cur * demands[i];
   }, 0);
-}
+};
 
 export const getWeekDemand = (demandsArr, price, week) => {
   return demandsArr[POSSIBLE_PRICES.indexOf(price)][week];
+};
+
+export const getChartData = (demands) => {
+  const stocks = demands.map((d, i) => {
+    const y = getRemainStock(demands.slice(0, i + 1));
+    return { x: i + 1, y };
+  });
+  return [{ x: 0, y: INIT_STOCK }, ...stocks];
 };

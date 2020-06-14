@@ -1,9 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import LineChart from 'react-linechart';
+import styled from 'styled-components';
 import PriceButton from './PriceButton';
 import TableView from './TableView';
+import Chart from './Chart';
 import { TOTAL_WEEKS } from '../../const/demand';
 import { PRICE_4 } from '../../const/variables';
-import { demandPicker, getRemainStock, getWeekDemand } from '../../utils/fn';
+import {
+  demandPicker,
+  getRemainStock,
+  getWeekDemand,
+  getChartData,
+} from '../../utils/fn';
 import { showConfirmDialog } from '../../utils/showConfirmDialog';
 
 /**
@@ -109,8 +117,12 @@ const RetailerGame = (props) => {
     }
   };
 
+  const data = useMemo(() => getChartData(demands), [demands]);
+
   return (
     <div>
+      {data && <Chart data={data} />}
+
       {!isGameEnded && (
         <PriceButton
           onClickBtn={onClickBtn}
