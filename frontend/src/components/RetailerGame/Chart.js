@@ -10,14 +10,17 @@ import { TOTAL_WEEKS } from '../../const/demand';
 import { INIT_STOCK } from '../../const/variables';
 
 const canvasWidth = 1200;
+const canvasWidthBuffer = 100;
 const canvasHeight = 600;
+const canvasHeightBuffer = 40;
 const cellColor = '#cfcfcf';
-const strokeColor = '#000';
+const strokeColor = 'black';
 const totalWGrid = TOTAL_WEEKS;
 const totalVGrid = 20;
 
 const CanvasWrapper = styled.div`
-  padding: 10px 0 0 10px;
+  width: ${canvasWidth + canvasWidthBuffer}px;
+  margin: 20px auto;
 `;
 
 const Chart = ({ data }) => {
@@ -27,8 +30,8 @@ const Chart = ({ data }) => {
     const rootEle = chartRoot.current;
     const chartEle = rootEle.querySelector('#chart').getContext('2d');
 
-    chartEle.canvas.width = canvasWidth + 100;
-    chartEle.canvas.height = canvasHeight + 40;
+    chartEle.canvas.width = canvasWidth + canvasWidthBuffer;
+    chartEle.canvas.height = canvasHeight + canvasHeightBuffer;
     chartEle.clearRect(0, 0, canvasWidth, canvasHeight);
     chartEle.translate(50, 20);
 

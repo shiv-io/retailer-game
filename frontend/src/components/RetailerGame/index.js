@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import LineChart from 'react-linechart';
 import styled from 'styled-components';
 import PriceButton from './PriceButton';
 import TableView from './TableView';

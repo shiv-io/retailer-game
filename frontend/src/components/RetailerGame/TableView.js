@@ -15,7 +15,7 @@ const SummaryRow = ({ prices, demands, maxRevenue }) => {
       <Table.Cell></Table.Cell>
       <Table.Cell></Table.Cell>
       <Table.Cell>
-        <Text>Salvage Revenu:</Text>
+        <Text>Salvage Revenue:</Text>
         <Text>{`$${salvageRevenue}`}</Text>
       </Table.Cell>
       <Table.Cell>
