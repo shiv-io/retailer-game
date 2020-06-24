@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import LineChart from './LineChart';
 import PriceButton from './PriceButton';
+import ResetButton from './ResetButton';
 import TableView from './TableView';
 import { TOTAL_WEEKS } from '../../const/demand';
 import { PRICE_4 } from '../../const/variables';
@@ -115,6 +116,12 @@ const RetailerGame = (props) => {
     }
   };
 
+  const onClickResetBtn = () => {
+    setPrices([]);
+    setDemands([]);
+    setGameEnded(false);
+  };
+
   const data = useMemo(
     () => [
       {
@@ -137,11 +144,14 @@ const RetailerGame = (props) => {
         />
       )}
       {prices.length > 0 && (
-        <TableView
-          prices={prices}
-          demands={demands}
-          showSummary={isGameEnded}
-        />
+        <>
+          <TableView
+            prices={prices}
+            demands={demands}
+            showSummary={isGameEnded}
+          />
+          <ResetButton onClick={onClickResetBtn} />
+        </>
       )}
     </div>
   );
