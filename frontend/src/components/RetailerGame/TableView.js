@@ -1,6 +1,8 @@
 import React from 'react';
-import { Table, Text } from 'gestalt';
+import { Table } from 'gestalt';
 import { getRemainStock, getTotalRevenue } from '../../utils/fn';
+import { DollarText } from './DollarText';
+import { Text } from './Text';
 import { PRICE_SALVAGE } from '../../const/variables';
 
 const SummaryRow = ({ prices, demands, maxRevenue }) => {
@@ -8,6 +10,8 @@ const SummaryRow = ({ prices, demands, maxRevenue }) => {
   const salvageRevenue = remainingStock * PRICE_SALVAGE;
   const totalRevenue = getTotalRevenue(prices, demands) + salvageRevenue;
 
+  // 本次決策品質
+  // total / max
   return (
     <Table.Row>
       <Table.Cell></Table.Cell>
@@ -15,16 +19,16 @@ const SummaryRow = ({ prices, demands, maxRevenue }) => {
       <Table.Cell></Table.Cell>
       <Table.Cell></Table.Cell>
       <Table.Cell>
-        <Text>Salvage Revenue:</Text>
-        <Text>{`$${salvageRevenue}`}</Text>
+        <Text>殘值：</Text>
+        <DollarText>{salvageRevenue}</DollarText>
       </Table.Cell>
       <Table.Cell>
-        <Text>總營收:</Text>
-        <Text>{`$${totalRevenue}`}</Text>
+        <Text>總營收：</Text>
+        <DollarText>{totalRevenue}</DollarText>
       </Table.Cell>
       <Table.Cell>
-        <Text>最大營收:</Text>
-        <Text>{maxRevenue}</Text>
+        <Text>最大可能營收：</Text>
+        <DollarText>{maxRevenue}</DollarText>
       </Table.Cell>
     </Table.Row>
   );
@@ -71,7 +75,7 @@ const TableView = ({ prices, demands, showSummary = false }) => {
                 <Text>{i + 1}</Text>
               </Table.Cell>
               <Table.Cell>
-                <Text>{`$${price}`}</Text>
+                <DollarText>{price}</DollarText>
               </Table.Cell>
               <Table.Cell>
                 <Text>{remainingStock}</Text>
@@ -80,13 +84,13 @@ const TableView = ({ prices, demands, showSummary = false }) => {
                 <Text>{demand}</Text>
               </Table.Cell>
               <Table.Cell>
-                <Text>{remainingStock - demand}</Text>
+                <DollarText>{remainingStock - demand}</DollarText>
               </Table.Cell>
               <Table.Cell>
-                <Text>{`$${revenue}`}</Text>
+                <DollarText>{revenue}</DollarText>
               </Table.Cell>
               <Table.Cell>
-                <Text>{`$${cumulatedRevenue}`}</Text>
+                <DollarText>{cumulatedRevenue}</DollarText>
               </Table.Cell>
             </Table.Row>
           );

@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import styled from 'styled-components';
+import LineChart from './LineChart';
 import PriceButton from './PriceButton';
 import TableView from './TableView';
-import Chart from './Chart';
 import { TOTAL_WEEKS } from '../../const/demand';
 import { PRICE_4 } from '../../const/variables';
 import {
@@ -116,11 +115,20 @@ const RetailerGame = (props) => {
     }
   };
 
-  const data = useMemo(() => getChartData(demands), [demands]);
+  const data = useMemo(
+    () => [
+      {
+        color: 'steelblue',
+        points: getChartData(demands),
+      },
+    ],
+    [demands],
+  );
 
   return (
     <div>
-      {data && <Chart data={data} />}
+      {/* {data && <Chart data={data} />} */}
+      <LineChart data={data} />
 
       {!isGameEnded && (
         <PriceButton

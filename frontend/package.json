@@ -13,6 +13,7 @@
     "react-dropzone": "^10.2.2",
     "react-leaflet": "^2.6.1",
     "react-leaflet-geojson-patterns": "^1.1.0",
+    "react-linechart": "^1.1.12",
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.4.1",
     "styled-components": "^5.0.1",
