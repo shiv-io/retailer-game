@@ -32,6 +32,10 @@ const Chart = ({ data }) => {
     setChartPos(rect);
   }, []);
 
+  const onPointHover = ({ x, y }) => {
+    return `(${x}, ${y})`;
+  }
+
   const { width, left } = chartPos;
   return (
     <ChartContainer ref={chartRef}>
@@ -49,6 +53,8 @@ const Chart = ({ data }) => {
         hideXLabel
         xLabel="剩餘週數"
         margins={{ top: 50, bottom: 50}}
+        onPointHover={onPointHover}
+        tooltipClass="tooltip"
       />
     </ChartContainer>
   );

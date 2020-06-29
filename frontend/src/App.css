@@ -1,6 +1,4 @@
-.marker-div-icon {
-  width: 50px;
-  height: 50px;
-  background: yellow;
-  border-radius: 50px;
+.tooltip {
+  position: absolute;
+  transform: translate(-50px);
 }
