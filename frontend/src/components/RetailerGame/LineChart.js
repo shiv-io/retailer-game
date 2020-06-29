@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import LineChart from 'react-linechart';
 import { INIT_STOCK } from '../../const/variables';
 import { IndexContext } from '../../App';
+import showTooltip from '../../utils/showTooltip';
 
 const ChartContainer = styled.div`
   position: relative;
@@ -14,9 +15,9 @@ const ChartContainer = styled.div`
 
 const AbsText = styled.div`
   position: absolute;
-  top: ${props => props.top}px;
-  left: ${props => props.left}px;
-  bottom: ${props => props.bottom}px;
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
+  bottom: ${(props) => props.bottom}px;
 `;
 
 const Chart = ({ data }) => {
@@ -32,17 +33,21 @@ const Chart = ({ data }) => {
     setChartPos(rect);
   }, []);
 
-  const onPointHover = ({ x, y }) => {
-    return `(${x}, ${y})`;
-  }
+  const onPointClick = (e, { x, y }) => {
+    showTooltip({ anchor: e.target, content: `(${x}, ${y})` });
+  };
 
   const { width, left } = chartPos;
   return (
     <ChartContainer ref={chartRef}>
-      <AbsText top={0} left={left}>剩餘存貨量</AbsText>
-      <AbsText bottom={10} left={width - 50}>剩餘週數</AbsText>
+      <AbsText top={0} left={left}>
+        剩餘存貨量
+      </AbsText>
+      <AbsText bottom={10} left={width - 50}>
+        剩餘週數
+      </AbsText>
       <LineChart
-        width={window.innerWidth * 0.9 }
+        width={window.innerWidth * 0.9}
         height={window.innerHeight * 0.9}
         data={data}
         xMin={0}
@@ -52,9 +57,8 @@ const Chart = ({ data }) => {
         hideYLabel
         hideXLabel
         xLabel="剩餘週數"
-        margins={{ top: 50, bottom: 50}}
-        onPointHover={onPointHover}
-        tooltipClass="tooltip"
+        margins={{ top: 50, bottom: 50 }}
+        onPointClick={onPointClick}
       />
     </ChartContainer>
   );
