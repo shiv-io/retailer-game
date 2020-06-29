@@ -1,6 +1,7 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
 import { upload } from './upload';
+import { getDemands } from './demands';
 
 export default ({ config, db }) => {
   let api = Router();
@@ -8,7 +9,7 @@ export default ({ config, db }) => {
   // mount the facets resource
   // api.use('/facets', facets({ config, db }));
 
-  // api.get('/demands', getDemands);
+  api.get('/demands', getDemands);
   api.post('/demands', upload);
 
   // perhaps expose some API metadata at the root

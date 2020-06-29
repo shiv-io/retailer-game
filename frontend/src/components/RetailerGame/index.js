@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useContext } from 'react';
+import { IndexContext } from '../../App';
 import LineChart from './LineChart';
 import PriceButton from './PriceButton';
 import ResetButton from './ResetButton';
 import TableView from './TableView';
-import { TOTAL_WEEKS } from '../../const/demand';
 import { PRICE_4 } from '../../const/variables';
 import {
-  demandPicker,
   getRemainStock,
   getWeekDemand,
   getChartData,
@@ -31,8 +30,8 @@ import { showConfirmDialog } from '../../utils/showConfirmDialog';
  */
 
 const RetailerGame = (props) => {
-  const ref = useRef(demandPicker());
-  const demandsArr = ref.current;
+  const { demandsArr, TOTAL_WEEKS, pickDemandsAgain } = useContext(IndexContext);
+
   const [prices, setPrices] = useState([]);
   const [demands, setDemands] = useState([]);
   const [isGameEnded, setGameEnded] = useState(false);
@@ -120,6 +119,7 @@ const RetailerGame = (props) => {
     setPrices([]);
     setDemands([]);
     setGameEnded(false);
+    pickDemandsAgain();
   };
 
   const data = useMemo(

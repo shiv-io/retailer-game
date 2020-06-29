@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Box, Text } from 'gestalt';
 import styled from 'styled-components';
 import LineChart from 'react-linechart';
-import { TOTAL_WEEKS } from '../../const/demand';
 import { INIT_STOCK } from '../../const/variables';
+import { IndexContext } from '../../App';
 
 const AbsText = styled.div`
   position: absolute;
@@ -12,6 +12,8 @@ const AbsText = styled.div`
 `;
 
 const Chart = ({ data }) => {
+  const { TOTAL_WEEKS } = useContext(IndexContext);
+
   const chartRef = useRef(null);
   const [chartPos, setChartPos] = useState({});
 

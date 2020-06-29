@@ -4,15 +4,23 @@ import {
   INIT_STOCK,
   POSSIBLE_PRICES,
 } from '../const/variables';
-import { possibleDemands } from '../const/demand';
 
-export const demandPicker = () => {
+export const demandPicker = (possibleDemands, possibleMax) => {
   const n = Math.floor(Math.random() * N_POSSIBILITY) + 1;
   const m = Math.floor(Math.random() * M_POSSIBILITY) + 0;
   const p = POSSIBLE_PRICES.length;
-  const index = n * m * p;
-  if (!possibleDemands[index]) return possibleDemands.slice(0, p);
-  return possibleDemands.slice(index, index + p);
+  const maxIdx = n * m;
+  const demandsIndex = n * m * p;
+
+  console.log({ maxIdx, demandsIndex });
+
+  if (!possibleDemands[demandsIndex])
+    return [possibleDemands.slice(0, p), possibleMax[0]];
+
+  return [
+    possibleDemands.slice(demandsIndex, demandsIndex + p),
+    possibleMax[maxIdx],
+  ];
 };
 
 export const getRemainStock = (demands) => {

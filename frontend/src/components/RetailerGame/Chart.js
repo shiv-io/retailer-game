@@ -1,3 +1,5 @@
+/** obsolete file, no need to maintain it */
+
 import React, {
   useState,
   useEffect,
@@ -6,8 +8,9 @@ import React, {
   useMemo,
 } from 'react';
 import styled from 'styled-components';
-import { TOTAL_WEEKS } from '../../const/demand';
 import { INIT_STOCK } from '../../const/variables';
+
+const TOTAL_WEEKS = 15;
 
 const canvasWidth = 1200;
 const canvasWidthBuffer = 100;

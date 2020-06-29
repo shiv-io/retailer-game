@@ -1,36 +1,49 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Table } from 'gestalt';
+import styled from 'styled-components';
 import { getRemainStock, getTotalRevenue } from '../../utils/fn';
 import { DollarText } from './DollarText';
 import { Text } from './Text';
 import { PRICE_SALVAGE } from '../../const/variables';
+import { IndexContext } from '../../App';
 
-const SummaryRow = ({ prices, demands, maxRevenue }) => {
+const BiggerText = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+`;
+
+const SummaryRow = ({ prices, demands }) => {
+  const { max } = useContext(IndexContext);
   const remainingStock = getRemainStock(demands);
   const salvageRevenue = remainingStock * PRICE_SALVAGE;
   const totalRevenue = getTotalRevenue(prices, demands) + salvageRevenue;
 
-  // 本次決策品質
-  // total / max
   return (
-    <Table.Row>
-      <Table.Cell></Table.Cell>
-      <Table.Cell></Table.Cell>
-      <Table.Cell></Table.Cell>
-      <Table.Cell></Table.Cell>
-      <Table.Cell>
-        <Text>殘值：</Text>
-        <DollarText>{salvageRevenue}</DollarText>
-      </Table.Cell>
-      <Table.Cell>
-        <Text>總營收：</Text>
-        <DollarText>{totalRevenue}</DollarText>
-      </Table.Cell>
-      <Table.Cell>
-        <Text>最大可能營收：</Text>
-        <DollarText>{maxRevenue}</DollarText>
-      </Table.Cell>
-    </Table.Row>
+    <>
+      <Table.Row>
+        <Table.Cell></Table.Cell>
+        <Table.Cell></Table.Cell>
+        <Table.Cell></Table.Cell>
+        <Table.Cell></Table.Cell>
+        <Table.Cell>
+          <Text>殘值：</Text>
+          <DollarText>{salvageRevenue}</DollarText>
+        </Table.Cell>
+        <Table.Cell>
+          <Text>總營收：</Text>
+          <DollarText>{totalRevenue}</DollarText>
+        </Table.Cell>
+        <Table.Cell>
+          <Text>最大可能營收：</Text>
+          <DollarText>{max}</DollarText>
+        </Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell colSpan={7}>
+          <BiggerText>本次決策品質（總營收 / 最大可能營收）： {totalRevenue / max}</BiggerText>
+        </Table.Cell>
+      </Table.Row>
+    </>
   );
 };
 
@@ -38,7 +51,7 @@ const TableView = ({ prices, demands, showSummary = false }) => {
   let cumulatedRevenue = 0;
   return (
     <Table>
-      <Table.Header>
+      <Table.Header sticky>
         <Table.Row>
           <Table.HeaderCell>
             <Text weight="bold">週</Text>
