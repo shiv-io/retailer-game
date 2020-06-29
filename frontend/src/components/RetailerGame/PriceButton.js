@@ -5,25 +5,22 @@ import { POSSIBLE_PRICES } from '../../const/variables';
 
 const PriceButton = ({ lastPrice, onClickBtn }) => (
   <>
+    <Text align="center" weight="bold">
+      <Box paddingX={3} paddingY={2}>
+        請選擇本週價格
+      </Box>
+    </Text>
     <Box display="flex" justifyContent="evenly">
-      <Card>
-        <Text align="center" weight="bold">
-          <Box paddingX={3} paddingY={2}>
-            請選擇本週價格
-          </Box>
-        </Text>
-        {POSSIBLE_PRICES.map((p) => (
-          <Box display="inlineBlock" paddingX={3}>
+      {POSSIBLE_PRICES.map((p) => (
+        <Box width="24%">
           <Button
             onClick={() => onClickBtn(p)}
             text={`$${p}`}
-            inline
             disabled={p > lastPrice}
             color="blue"
           />
-          </Box>
-        ))}
-      </Card>
+        </Box>
+      ))}
     </Box>
   </>
 );

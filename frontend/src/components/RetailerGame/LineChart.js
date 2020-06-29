@@ -1,14 +1,22 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Box, Text } from 'gestalt';
+import { Text } from 'gestalt';
 import styled from 'styled-components';
 import LineChart from 'react-linechart';
 import { INIT_STOCK } from '../../const/variables';
 import { IndexContext } from '../../App';
 
+const ChartContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
 const AbsText = styled.div`
   position: absolute;
   top: ${props => props.top}px;
   left: ${props => props.left}px;
+  bottom: ${props => props.bottom}px;
 `;
 
 const Chart = ({ data }) => {
@@ -24,11 +32,11 @@ const Chart = ({ data }) => {
     setChartPos(rect);
   }, []);
 
-  const { top, right, bottom, left } = chartPos;
+  const { width, left } = chartPos;
   return (
-    <Box display="flex" justifyContent="center" marginTop={5} ref={chartRef}>
-      <AbsText top={top} left={left}>剩餘存貨量</AbsText>
-      <AbsText top={bottom - 20} left={right - 50}>剩餘週數</AbsText>
+    <ChartContainer ref={chartRef}>
+      <AbsText top={0} left={left}>剩餘存貨量</AbsText>
+      <AbsText bottom={10} left={width - 50}>剩餘週數</AbsText>
       <LineChart
         width={window.innerWidth * 0.9 }
         height={window.innerHeight * 0.9}
@@ -42,7 +50,7 @@ const Chart = ({ data }) => {
         xLabel="剩餘週數"
         margins={{ top: 50, bottom: 50}}
       />
-    </Box>
+    </ChartContainer>
   );
 };
 
