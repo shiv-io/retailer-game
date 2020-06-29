@@ -10,6 +10,7 @@ import { IndexContext } from '../../App';
 const BiggerText = styled.div`
   font-size: 20px;
   font-weight: 700;
+  text-align: center;
 `;
 
 const SummaryRow = ({ prices, demands }) => {
