@@ -72,7 +72,7 @@ const App = (props) => {
         justifyContent="end"
         padding={8}
       >
-        <Text align="left" size="lg" weight="bold">
+        <Text align="left" size="sm" weight="bold" color="lightGray">
           Made by the IEDO Lab, NTU IM
         </Text>
       </Box>
