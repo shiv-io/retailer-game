@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, Card } from 'gestalt';
+import Button from './GreenButton';
 import { Text } from './Text';
 
 const ResetButton = ({ onClick }) => {
@@ -7,7 +7,6 @@ const ResetButton = ({ onClick }) => {
     <Button
       onClick={onClick}
       text="重玩一次"
-      color="blue"
     />
   );
 };

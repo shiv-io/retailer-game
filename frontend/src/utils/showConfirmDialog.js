@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button, Box } from 'gestalt';
+import { GreenButton } from '../components/RetailerGame/GreenButton';
 import { render, unmountComponentAtNode } from 'react-dom';
 
 const ConfirmModal = ({ heading, children, onCancel, onConfirm }) => (
@@ -15,7 +16,7 @@ const ConfirmModal = ({ heading, children, onCancel, onConfirm }) => (
         justifyContent="center"
       >
         <Box padding={1}>
-          <Button size="lg" color="blue" text="確認" onClick={onConfirm} />
+          <GreenButton size="lg" color="green" text="確認" onClick={onConfirm} />
         </Box>
         <Box padding={1}>
           <Button size="lg" text="取消" onClick={onCancel} />

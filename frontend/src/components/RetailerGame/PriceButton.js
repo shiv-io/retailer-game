@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Box, Card } from 'gestalt';
+import { Box, Card } from 'gestalt';
+import Button from './GreenButton';
 import { Text } from './Text';
 import { POSSIBLE_PRICES } from '../../const/variables';
 
@@ -17,7 +18,6 @@ const PriceButton = ({ lastPrice, onClickBtn }) => (
             onClick={() => onClickBtn(p)}
             text={`$${p}`}
             disabled={p > lastPrice}
-            color="blue"
           />
         </Box>
       ))}
