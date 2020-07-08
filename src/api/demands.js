@@ -10,7 +10,7 @@ const getDemands = async (req, res) => {
   const max = (await fs.readFile(MAX_PATH, { encoding: 'utf-8' }))
     .replace(/\r/g, '')
     .split('\n')
-    .map((m) => parseInt(m, 10));
+    .map((m) => parseFloat(m, 10));
 
   res.json({
     demands,

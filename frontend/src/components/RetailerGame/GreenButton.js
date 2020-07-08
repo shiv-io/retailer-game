@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const ButtonContainer = styled.div`
   > button {
     background-color: #0fa573;
-    :hover {
+    :hover, :focus {
       background-color: #0fa573;
     }
   }

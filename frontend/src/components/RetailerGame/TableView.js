@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import { Table } from 'gestalt';
 import styled from 'styled-components';
 import { getRemainStock, getTotalRevenue } from '../../utils/fn';
-import { DollarText } from './DollarText';
-import { Text } from './Text';
+import { DollarText, LocaleText as Text } from './FormattedText';
 import { PRICE_SALVAGE } from '../../const/variables';
 import { IndexContext } from '../../App';
 
@@ -41,7 +40,13 @@ const SummaryRow = ({ prices, demands }) => {
       </Table.Row>
       <Table.Row>
         <Table.Cell colSpan={7}>
-          <BiggerText>本次決策品質（總營收 / 最大可能營收）： {totalRevenue / max}</BiggerText>
+          <BiggerText>
+            本次決策品質（總營收 / 最大可能營收）：{' '}
+            {(totalRevenue * 100 / max).toLocaleString('en-US', {
+              minimumFractionDigits: 1,
+              maximumFractionDigits: 1,
+            })}%
+          </BiggerText>
         </Table.Cell>
       </Table.Row>
     </>
@@ -98,7 +103,7 @@ const TableView = ({ prices, demands, showSummary = false }) => {
                 <Text>{demand}</Text>
               </Table.Cell>
               <Table.Cell>
-                <DollarText>{remainingStock - demand}</DollarText>
+                <Text>{remainingStock - demand}</Text>
               </Table.Cell>
               <Table.Cell>
                 <DollarText>{revenue}</DollarText>

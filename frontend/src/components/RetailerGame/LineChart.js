@@ -44,7 +44,7 @@ const Chart = ({ data }) => {
         剩餘存貨量
       </AbsText>
       <AbsText bottom={10} left={width - 50}>
-        剩餘週數
+        已進行週數
       </AbsText>
       <LineChart
         width={window.innerWidth * 0.9}
@@ -56,7 +56,6 @@ const Chart = ({ data }) => {
         yMin={0}
         hideYLabel
         hideXLabel
-        xLabel="剩餘週數"
         margins={{ top: 50, bottom: 50 }}
         onPointClick={onPointClick}
       />

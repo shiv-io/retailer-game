@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useMemo, useContext } from 'react';
+import { get } from 'lodash';
 import { IndexContext } from '../../App';
 import LineChart from './LineChart';
 import PriceButton from './PriceButton';
 import ResetButton from './ResetButton';
 import TableView from './TableView';
-import { PRICE_4 } from '../../const/variables';
+import { PRICE_1, PRICE_4 } from '../../const/variables';
 import {
   getRemainStock,
   getWeekDemand,
@@ -35,6 +36,11 @@ const RetailerGame = (props) => {
   const [prices, setPrices] = useState([]);
   const [demands, setDemands] = useState([]);
   const [isGameEnded, setGameEnded] = useState(false);
+
+  useEffect(() => {
+    const isReady = get(demandsArr, '0.0', null) !== null;
+    if (isReady) onClickBtn(PRICE_1);
+  }, [demandsArr]);
 
   const getNextState = (price, pArr, dArr) => {
     const week = pArr.length;
@@ -88,12 +94,6 @@ const RetailerGame = (props) => {
     }
   }, [prices, demands]);
 
-  useEffect(() => {
-    if (isGameEnded) {
-      // calculate salvage value
-    }
-  }, [isGameEnded]);
-
   const onClickBtn = async (price) => {
     switch (price) {
       case PRICE_4:
@@ -116,10 +116,14 @@ const RetailerGame = (props) => {
   };
 
   const onClickResetBtn = () => {
+    window.location.reload();
+    return false;
+    /*
     setPrices([]);
     setDemands([]);
     setGameEnded(false);
     pickDemandsAgain();
+    */
   };
 
   const data = useMemo(
