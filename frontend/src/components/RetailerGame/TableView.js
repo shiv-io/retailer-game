@@ -7,9 +7,10 @@ import { PRICE_SALVAGE } from '../../const/variables';
 import { IndexContext } from '../../App';
 
 const BiggerText = styled.div`
-  font-size: 20px;
+  font-size: ${(props) => props.size || 20}px;
   font-weight: 700;
   text-align: center;
+  color: ${(props) => props.color};
 `;
 
 const SummaryRow = ({ prices, demands }) => {
@@ -40,12 +41,13 @@ const SummaryRow = ({ prices, demands }) => {
       </Table.Row>
       <Table.Row>
         <Table.Cell colSpan={7}>
-          <BiggerText>
-            本次決策品質（總營收 / 最大可能營收）：{' '}
-            {(totalRevenue * 100 / max).toLocaleString('en-US', {
+          <BiggerText>本次決策品質（總營收 / 最大可能營收）： </BiggerText>
+          <BiggerText color="#0fa573" size="30">
+            {((totalRevenue * 100) / max).toLocaleString('en-US', {
               minimumFractionDigits: 1,
               maximumFractionDigits: 1,
-            })}%
+            })}
+            %
           </BiggerText>
         </Table.Cell>
       </Table.Row>
