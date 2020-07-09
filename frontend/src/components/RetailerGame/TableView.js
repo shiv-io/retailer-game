@@ -14,10 +14,13 @@ const BiggerText = styled.div`
 `;
 
 const SummaryRow = ({ prices, demands }) => {
-  const { max } = useContext(IndexContext);
+  let { max } = useContext(IndexContext);
   const remainingStock = getRemainStock(demands);
   const salvageRevenue = remainingStock * PRICE_SALVAGE;
   const totalRevenue = getTotalRevenue(prices, demands) + salvageRevenue;
+
+  // prevent quiality from being over 100%
+  if (totalRevenue > max) max = totalRevenue;
 
   return (
     <>
