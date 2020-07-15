@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import axios from 'axios';
 import Dropzone from './Dropzone';
+import { showConfirmDialog } from '../../utils/showConfirmDialog';
 
 const file2form = (name) => (file) => {
   let formData = new FormData();
@@ -10,9 +11,10 @@ const file2form = (name) => (file) => {
 
 const Uploader = (props) => {
   const onDrop = useCallback((name) => (acceptedFiles) => {
-    acceptedFiles.forEach((file) => {
+    acceptedFiles.forEach(async (file) => {
       const formData = file2form(name)(file);
-      axios.post('/api/demands', formData);
+      await axios.post('/api/demands', formData);
+      showConfirmDialog({ heading: '上傳成功', content: `已上傳 ${name}.csv 至伺服器` })
     });
   }, []);
 

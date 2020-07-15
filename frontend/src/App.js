@@ -61,7 +61,7 @@ const App = (props) => {
       </Box>
       <Router>
         <Route exact path="/" component={RetailerGame} />
-        <Route exact path="/upload" component={Upload} />
+        <Route exact path="/uploadrroo" component={Upload} />
       </Router>
       <Box marginBottom={10} />
       <Divider />
