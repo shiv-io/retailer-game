@@ -98,8 +98,8 @@ const RetailerGame = (props) => {
     switch (price) {
       case PRICE_4:
         const result = await showConfirmDialog({
-          heading: '遊戲即將終止',
-          content: '確定選取 $36 ？',
+          heading: 'The game is about to end',
+          content: 'Confirm selection: $36 ？',
         });
         if (result) {
           const [newPrices, newDemands] = supplyLowestPrices(prices, demands);

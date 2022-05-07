@@ -8,7 +8,7 @@ const PriceButton = ({ lastPrice, onClickBtn }) => (
   <>
     <Text align="center" weight="bold">
       <Box paddingX={3} paddingY={2}>
-        請選擇本週價格
+        Please select this week's price
       </Box>
     </Text>
     <Box display="flex" justifyContent="evenly">

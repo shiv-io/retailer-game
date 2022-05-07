@@ -16,10 +16,10 @@ const ConfirmModal = ({ heading, children, onCancel, onConfirm }) => (
         justifyContent="center"
       >
         <Box padding={1}>
-          <GreenButton size="lg" color="green" text="確認" onClick={onConfirm} />
+          <GreenButton size="lg" color="green" text="Confirm" onClick={onConfirm} />
         </Box>
         <Box padding={1}>
-          <Button size="lg" text="取消" onClick={onCancel} />
+          <Button size="lg" text="Cancel" onClick={onCancel} />
         </Box>
       </Box>
     }

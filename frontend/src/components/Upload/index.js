@@ -47,8 +47,8 @@ const Uploader = (props) => {
         const formData = file2form(name)(file);
         await axios.post("/api/demands", formData);
         showConfirmDialog({
-          heading: "上傳成功",
-          content: `已上傳 ${name}.csv 至伺服器`,
+          heading: "Uploaded successfully",
+          content: `Uploaded ${name}.csv to server`,
         });
       });
     },
@@ -57,8 +57,8 @@ const Uploader = (props) => {
 
   return (
     <>
-      <Dropzone onDrop={onDrop("demands")} text="上傳需求表" />
-      <Dropzone onDrop={onDrop("max")} text="上傳可能最大可能營收表" />
+      <Dropzone onDrop={onDrop("demands")} text="Upload request form" />
+      <Dropzone onDrop={onDrop("max")} text="Upload the possible maximum possible revenue statement" />
       <DisplayDemands demands={possibleDemands} max={possibleMax} />
     </>
   );

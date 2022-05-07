@@ -41,10 +41,10 @@ const Chart = ({ data }) => {
   return (
     <ChartContainer ref={chartRef}>
       <AbsText top={0} left={left}>
-        剩餘存貨量
+        Remaining inventory 
       </AbsText>
       <AbsText bottom={10} left={width - 50}>
-        已進行週數
+        Weeks in progress
       </AbsText>
       <LineChart
         width={window.innerWidth * 0.9}

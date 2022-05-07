@@ -30,21 +30,21 @@ const SummaryRow = ({ prices, demands }) => {
         <Table.Cell></Table.Cell>
         <Table.Cell></Table.Cell>
         <Table.Cell>
-          <Text>殘值：</Text>
+          <Text>Residual value：</Text>
           <DollarText>{salvageRevenue}</DollarText>
         </Table.Cell>
         <Table.Cell>
-          <Text>總營收：</Text>
+          <Text>Total revenue：</Text>
           <DollarText>{totalRevenue}</DollarText>
         </Table.Cell>
         <Table.Cell>
-          <Text>最大可能營收：</Text>
+          <Text>Maximum possible revenue：</Text>
           <DollarText>{max}</DollarText>
         </Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell colSpan={7}>
-          <BiggerText>本次決策品質（總營收 / 最大可能營收）： </BiggerText>
+          <BiggerText>The quality of this decision (total revenue / maximum possible revenue)： </BiggerText>
           <BiggerText color="#0fa573" size="30">
             {((totalRevenue * 100) / max).toLocaleString('en-US', {
               minimumFractionDigits: 1,
@@ -65,25 +65,25 @@ const TableView = ({ prices, demands, showSummary = false }) => {
       <Table.Header sticky>
         <Table.Row>
           <Table.HeaderCell>
-            <Text weight="bold">週</Text>
+            <Text weight="bold">Week</Text>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <Text weight="bold">價錢</Text>
+            <Text weight="bold">Price</Text>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <Text weight="bold">存貨</Text>
+            <Text weight="bold">Stock</Text>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <Text weight="bold">銷售</Text>
+            <Text weight="bold">Sale</Text>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <Text weight="bold">剩餘存貨</Text>
+            <Text weight="bold">Remaining inventory</Text>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <Text weight="bold">營收</Text>
+            <Text weight="bold">Revenue</Text>
           </Table.HeaderCell>
           <Table.HeaderCell>
-            <Text weight="bold">累積營收</Text>
+            <Text weight="bold">Accumulated revenue</Text>
           </Table.HeaderCell>
         </Table.Row>
       </Table.Header>

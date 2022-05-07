@@ -6,7 +6,7 @@ const ResetButton = ({ onClick }) => {
   return (
     <Button
       onClick={onClick}
-      text="重玩一次"
+      text="Reset"
     />
   );
 };
